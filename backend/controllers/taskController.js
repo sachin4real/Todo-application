@@ -18,7 +18,7 @@ export const createTask = async (req, res) => {
     description: req.body.description,
     completed: req.body.completed,
     createdAt: new Date(),
-    updatedAt: new Date()
+    updatedAt: new Date(),
   });
 
   try {
@@ -29,15 +29,16 @@ export const createTask = async (req, res) => {
   }
 };
 
-// Update a task
+// Update a task (including name and description)
 export const updateTask = async (req, res) => {
   try {
     const task = await Task.findByIdAndUpdate(
       req.params.id,
       {
-        completed: req.body.completed,
         name: req.body.name,
-        updatedAt: new Date()
+        description: req.body.description,
+        completed: req.body.completed,
+        updatedAt: new Date(),
       },
       { new: true }
     );
